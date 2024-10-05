@@ -1,0 +1,123 @@
+html,body{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Playwrite DE Grund", cursive;
+  background-color: #00246B;
+}
+.invalid{
+  border-color: red;
+}
+.error{
+  color: red;
+  font-size: small;
+  font-family: 'Courier New', Courier, monospace;
+}
+.navbar{
+  display: flex;
+  position: absolute;
+  top: 0;
+  margin: 0;
+  padding: 0.5rem;
+  width: 100vw;
+  align-items: center;
+  background-color: #CADCFC;
+}
+.logo {
+  margin-left: 1rem;
+  width: 5rem;
+}
+.btnContainer{
+  margin: 0.2rem;
+}
+button{
+  padding: 0.25rem;
+  border: none;
+  border-bottom: #00246B solid 2px;
+  background-color: #CADCFC;
+  color: #00246B;
+  font-family: "Playwrite DE Grund", cursive;
+  
+}
+button:hover{
+  background-color: #00246B;
+  border-radius: 5px;
+  color: #CADCFC;
+}
+button:active{
+  transform: scale(0.9);
+}
+.mainContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color:#CADCFC ;
+  width: 500px;
+  margin-top: 10rem;
+  padding: 3rem;
+  color: #00246B;
+  border-radius: 10px;
+  
+}
+.inputField{
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  width: 30rem;
+}
+input{
+  border: none;
+  border-bottom: #00246B solid 2px;
+  background-color: #CADCFC;
+  margin-top: 0.5rem;
+  font-family: "Playwrite DE Grund", cursive;
+  font-size: 1rem;
+}
+.footer{
+  bottom: 0;
+  padding: 0.5rem;
+  color: #FFFFFF;
+  font-size: 0.9rem;
+  justify-content: center;
+  margin-top: 5rem;
+}
+#loader{
+  position: absolute;
+  top: 25vh;
+}
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@media (max-width: 768px) {
+  .mainContainer{
+      width: 50vw;
+      height: fit-content;
+  }
+  .inputField{
+      width: fit-content;
+  }
+  h1{
+      font-size: 1rem;
+  }
+  .logo{
+      width: 2rem;
+  }
+  .footer{
+      margin-top: 3rem;
+      font-size: 0.5rem;
+  }
+}
+
