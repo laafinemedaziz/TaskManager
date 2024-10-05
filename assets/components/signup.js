@@ -6,13 +6,14 @@ import { firstPage } from "./firstPage.js"
 import { db } from "./firebase.js"
 import { addDoc, query, collection, getDocs, where } from '../../node_modules/firebase/firestore'; 
 
+
 export function signupPage(){
     //implement the code for the sign up page
     //this is responsible for the redering of the signup page
     let root = document.getElementById("root")
     let signUpContainer = document.createElement("div")
     signUpContainer.className = "mainContainer"
-    createBtn("Back","","","","",signUpContainer,signupOptions)
+    createBtn("Back","","","","back",signUpContainer,signupOptions)
     let signUpForm = document.createElement("form")
     signUpForm.name = "signUpForm"
     let legend = document.createElement("legend")
@@ -65,7 +66,9 @@ export function signupPage(){
                 Email: ${form.email}
                 `)
             if (validate){
-                signUp(form)
+                //calling signup function that is responsible for the sign up logic
+                //passing the form object, signUpContainer and subBtn
+                signUp(form,signUpContainer,subBtn)
             }
         }
         else{
@@ -77,10 +80,10 @@ export function signupPage(){
     signUpContainer.append(signUpForm)
     root.append(signUpContainer)
 }
-export async function signUp(form){
+export async function signUp(form,signUpContainer,subBtn){
     //implement the code for signing up
     //this is responsible for the signup logic
-    let loader = document.getElementById("loader")
+    let notification = document.createElement("div")
     //Using mockApi for testing
     /* let usersEndPoint = "https://66ffdeec4da5bd2375524cbe.mockapi.io/Users"
     try {
@@ -118,18 +121,29 @@ export async function signUp(form){
         }
         //signing up if email doesn't already exist in the db
         else{
+            subBtn.disabled = true;
             console.log("Loading...")
-            loader.classList.add("loader")
+            notification.classList.add("loader")
+            signUpContainer.append(notification)
             const docRef = await addDoc(usersCol,form)
             console.log(docRef)
             console.log(`User added successfully with ID : ${docRef.id}`)
-            loader.classList.remove("loader")
-            alert(`User added successfully !`)
-            firstPage()
+            notification.classList.remove("loader")
+            notification.classList.add("notification")
+            notification.innerText = "User sucessfully added!"
+            setTimeout(()=>{
+                notification.innerText = "Redirecting to main page..."
+            },1000)
+            setTimeout(()=>{
+                firstPage()
+            },2000) 
         }
         
     } catch (error) {
-        loader.classList.remove("loader")
+        notification.classList.remove("loader")
+        subBtn.disabled = false;
+        notification.classList.add("error")
+        notification.innerText = 'There was an error signing up.\nPlease try again later.'
         console.error(`There was a problem adding user to the DB : ${error}`)
     }
 }
