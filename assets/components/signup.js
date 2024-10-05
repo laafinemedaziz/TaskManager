@@ -3,8 +3,8 @@ import { signupOptions } from "./signupOptions.js"
 import { formElements } from "./formElements.js"
 import { validation } from "./validation.js"
 import { firstPage } from "./firstPage.js"
-import { initializeApp } from '../../node_modules/firebase/app';
-import { getFirestore, addDoc, collection } from '../../node_modules/firebase/firestore'; 
+import { db } from "./firebase.js"
+import { addDoc, query, collection, getDocs, where } from '../../node_modules/firebase/firestore'; 
 
 export function signupPage(){
     //implement the code for the sign up page
@@ -106,28 +106,30 @@ export async function signUp(form){
         console.error(error)
     } */
    //Fire base
-    const firebaseConfig = {
-        apiKey: "AIzaSyDMDzajfBrAa66F9reZipV3e7oIWPCO2PQ",
-        authDomain: "task-manager-2630c.firebaseapp.com",
-        projectId: "task-manager-2630c",
-        storageBucket: "task-manager-2630c.appspot.com",
-        messagingSenderId: "989011003579",
-        appId: "1:989011003579:web:7a3bf431ba235a1253019e",
-        measurementId: "G-V0CTCGEH9P"
-    };
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const usersDB = collection(db,"users")
+    const usersCol = collection(db,"users")
     try {
-        console.log("Loading...")
-        loader.classList.add("loader")
-        const docRef = await addDoc(usersDB,form)
-        console.log(docRef)
-        console.log(`User added successfully with ID : ${docRef.id}`)
-        loader.classList.remove("loader")
-        alert(`User added successfully !`)
-        firstPage()
+        //verifying if the email is used in another account
+        const searchQ = query(usersCol,where("email","==",form.email))
+        const verify = await getDocs(searchQ)
+        //alerting user to use another email
+        if (verify.docs.length != 0){
+            console.log(verify.docs[0])
+            alert("Email already used.\nTry using another email.")
+        }
+        //signing up if email doesn't already exist in the db
+        else{
+            console.log("Loading...")
+            loader.classList.add("loader")
+            const docRef = await addDoc(usersCol,form)
+            console.log(docRef)
+            console.log(`User added successfully with ID : ${docRef.id}`)
+            loader.classList.remove("loader")
+            alert(`User added successfully !`)
+            firstPage()
+        }
+        
     } catch (error) {
+        loader.classList.remove("loader")
         console.error(`There was a problem adding user to the DB : ${error}`)
     }
 }
