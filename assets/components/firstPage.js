@@ -1,5 +1,5 @@
 import { createBtn } from "./createBtn.js"
-import { logIn } from "./login.js"
+import { loginPage } from "./login.js"
 import { signupOptions } from "./signupOptions.js"
 
 export function firstPage(){
@@ -16,7 +16,7 @@ export function firstPage(){
     //creating the logIn button
     let logInDiv = document.createElement("div")
     logInDiv.className = "btnContainer"
-    createBtn("Log In","You already have an account ? ","loginLabId","loginId","btn",logInDiv,logIn)
+    createBtn("Log In","You already have an account ? ","loginLabId","loginId","btn",logInDiv,loginPage)
     domElements.push(logInDiv)
     //creating the signUp button
     let signUpDiv = document.createElement("div")

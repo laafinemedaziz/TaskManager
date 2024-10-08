@@ -1,5 +1,6 @@
 import { initializeApp } from '../../node_modules/firebase/app';
-import { getFirestore } from '../../node_modules/firebase/firestore';
+import { getFirestore,collection } from '../../node_modules/firebase/firestore';
+import { getAuth } from '../../node_modules/firebase/auth';
     const firebaseConfig = {
         apiKey: "AIzaSyDMDzajfBrAa66F9reZipV3e7oIWPCO2PQ",
         authDomain: "task-manager-2630c.firebaseapp.com",
@@ -10,5 +11,15 @@ import { getFirestore } from '../../node_modules/firebase/firestore';
         measurementId: "G-V0CTCGEH9P"
     };
     const app = initializeApp(firebaseConfig);
+
+    //Firestore
     export const db = getFirestore(app);
+    //Firestore Collections
+    export const usersCol = collection(db,"users");
+
+
+
+
+    //firebase auth
+    export const auth = getAuth();
 

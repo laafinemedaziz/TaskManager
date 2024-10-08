@@ -2,9 +2,8 @@ import { createBtn } from "./createBtn.js"
 import { signupOptions } from "./signupOptions.js"
 import { formElements } from "./formElements.js"
 import { validation } from "./validation.js"
-import { firstPage } from "./firstPage.js"
-import { db } from "./firebase.js"
-import { addDoc, query, collection, getDocs, where } from '../../node_modules/firebase/firestore'; 
+import { auth } from "./firebase.js"
+import { createUserWithEmailAndPassword, updateProfile } from "../../node_modules/firebase/auth"
 
 
 export function signupPage(){
@@ -51,6 +50,9 @@ export function signupPage(){
     subBtn.type = "submit"
     subBtn.innerText = "Submit"
     signUpForm.append(subBtn)
+    //adding the notification view
+    let notification = document.createElement("div")
+    signUpForm.append(notification)
     signUpForm.onsubmit = (event)=>{
         event.preventDefault()
         let form = {
@@ -68,83 +70,48 @@ export function signupPage(){
             if (validate){
                 //calling signup function that is responsible for the sign up logic
                 //passing the form object, signUpContainer and subBtn
-                signUp(form,signUpContainer,subBtn)
+                signUp(form,subBtn,notification)
             }
         }
         else{
             alert("Please verify your information")
         }
     }
+    
     //clearing the root and appending the form to it
     root.innerHTML = ""
     signUpContainer.append(signUpForm)
     root.append(signUpContainer)
 }
-export async function signUp(form,signUpContainer,subBtn){
+
+export async function signUp(form,subBtn,notification){
     //implement the code for signing up
     //this is responsible for the signup logic
-    let notification = document.createElement("div")
-    //Using mockApi for testing
-    /* let usersEndPoint = "https://66ffdeec4da5bd2375524cbe.mockapi.io/Users"
-    try {
-        let response = await fetch(usersEndPoint,{
-            method : "POST",
-            headers :{
-                "Content-Type": "application/json",
-            },
-            body : JSON.stringify(form)
-        })
-        if (response.ok){
-            if(response.status === 201){
-                console.log("User created successfully")
-                alert(`User ${form.firstName} ${form.lastName} was successfully created !`)
-                firstPage()
-            }
-            else{
-                throw new Error(`Error : ${response.status} : ${response.statusText}`)
-            }
-        }
-    } catch (error) {
-        alert("There was an error sending your request.\nPlease try again later.")
-        console.error(error)
-    } */
    //Fire base
-    const usersCol = collection(db,"users")
     try {
-        //verifying if the email is used in another account
-        const searchQ = query(usersCol,where("email","==",form.email))
-        const verify = await getDocs(searchQ)
-        //alerting user to use another email
-        if (verify.docs.length != 0){
-            console.log(verify.docs[0])
-            alert("Email already used.\nTry using another email.")
-        }
-        //signing up if email doesn't already exist in the db
-        else{
-            subBtn.disabled = true;
-            console.log("Loading...")
-            notification.classList.add("loader")
-            signUpContainer.append(notification)
-            const docRef = await addDoc(usersCol,form)
-            console.log(docRef)
-            console.log(`User added successfully with ID : ${docRef.id}`)
-            notification.classList.remove("loader")
-            notification.classList.add("notification")
-            notification.innerText = "User sucessfully added!"
-            setTimeout(()=>{
-                notification.innerText = "Redirecting to main page..."
-            },1000)
-            setTimeout(()=>{
-                firstPage()
-            },2000) 
-        }
+        notification.innerText = ""
+        notification.classList.remove("error")
+        subBtn.disabled = true
+        notification.classList.add("loader")
+        const userCred = await createUserWithEmailAndPassword(auth,form.email,form.password)
+        notification.classList.remove("loader")
+        notification.classList.add("notification")
+        notification.innerText= "User successfully signed up!\nSetting up your profile..."
+        await updateProfile(userCred.user,{
+            displayName:`${form.firstName} ${form.lastName}`
+        })
+        setTimeout(()=>{
+            notification.innerText= "Everything is set! \nYou are now logged in!"
+        },1000)
+        console.log("User signed in")
+        //Gonna implement the code of the redirectig after I implement the fyp code
         
     } catch (error) {
         notification.classList.remove("loader")
         subBtn.disabled = false;
         notification.classList.add("error")
-        notification.innerText = 'There was an error signing up.\nPlease try again later.'
-        console.error(`There was a problem adding user to the DB : ${error}`)
+        console.error(`There was a problem signing up : ${error.code} : ${error.message}`);
+        notification.innerText = `There was an error signing up: ${error.message}.\n`
     }
 }
     
