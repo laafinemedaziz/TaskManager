@@ -2,11 +2,11 @@ import { firstPage } from "./firstPage"
 import { createBtn } from "./createBtn"
 import { auth } from "./firebase"
 import { task } from "./task"
+import { field } from "./field"
 export function mainPage(){
     const root = document.getElementById("root")
-    const mainContainer = document.createElement("div")
-    mainContainer.className = "mainContainer"
-    mainContainer.append(document.createElement("p").innerText = "Tasks :")
+    const dashboard = document.createElement("div")
+    dashboard.className = "dashboard"
     //header to display user infos, Tasks count and signout button
     const header = document.createElement("div")
     header.className = "header"
@@ -18,12 +18,29 @@ export function mainPage(){
     createBtn("Sign out","","","signOut","signOut",header,()=>{
         auth.signOut()
     })
+    //Task fields depending on status
+    //A task can be pending, done or archived 
+    const pending = field("pending")
+    dashboard.append(pending)
+
+    const done = field("done")
+    dashboard.append(done)
+
+    const archived = field("archived")
+    dashboard.append(archived)
+
+    pending.append(task("Task title","mm/dd/yyyy","Status","Task description Task description Task description","mm/dd/yyyy"))
+    pending.append(task("Task title","mm/dd/yyyy","Status","Task description Task description Task description","mm/dd/yyyy"))
+    pending.append(task("Task title","mm/dd/yyyy","Status","Task description Task description Task description","mm/dd/yyyy"))
+    done.append(task("Task title","mm/dd/yyyy","Status","Task description Task description Task description","mm/dd/yyyy"))
+    done.append(task("Task title","mm/dd/yyyy","Status","Task description Task description Task description","mm/dd/yyyy"))
+    archived.append(task("Task title","mm/dd/yyyy","Status","Task description Task description Task description","mm/dd/yyyy"))
+    archived.append(task("Task title","mm/dd/yyyy","Status","Task description Task description Task description","mm/dd/yyyy"))
 
     root.innerHTML = ""
     root.append(header)
-    mainContainer.append(task("Complete the app","10/9/2024","Pending","Need to complete the task manager project before the end of this month","30/10/2024"))
-    mainContainer.append(task("Complete the app","10/9/2024","Pending","Need to complete the task manager project before the end of this month","30/10/2024"))
-    root.append(mainContainer)
+    
+    root.append(dashboard)
 }
 async function getTasks(){
 

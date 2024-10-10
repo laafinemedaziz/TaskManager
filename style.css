@@ -68,6 +68,16 @@ button:active{
   border-radius: 10px;
   
 }
+.dashboard{
+  display: flex;
+  justify-content: center;
+  background-color:#CADCFC ;
+  width: fit-content;
+  margin: 1rem;
+  padding: 1rem;
+  color: #00246B;
+  border-radius: 10px;
+}
 .inputField{
   display: flex;
   flex-direction: column;
@@ -96,6 +106,7 @@ input{
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.315);
   margin: 1rem;
   padding: 0.5rem;
+  background-color: #606b7c85;
 }
 .task:hover{
   background-color: #00246B;
@@ -128,13 +139,36 @@ input{
 }
 .header{
   background-color: #CADCFC;
-  margin-top: 1rem;
+  margin: 1rem;
   padding: 0.5rem;
   border-radius: 10px;
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
+}
+.field{
+  border: 2px solid rgba(64, 62, 62, 0.489);
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  font-family: 'Courier New', Courier, monospace;
+}
+.pending{
+  background-color: #c349319c;
+  padding: 1rem;
+  color: #FFFFFF;
+}
+.done{
+  background-color: #16721b9c;
+  padding: 1rem;
+  color: #FFFFFF;
+}
+.archived{
+  background-color: #3469ba9c;
+  padding: 1rem;
+  color: #FFFFFF;
 }
 @keyframes spin {
   0% { transform: rotate(0deg); }
@@ -157,10 +191,17 @@ input{
   .task{
     box-shadow: none;
     border-radius: 10px;
-    background-color: #606b7c85;
     color: #00246B;
     font-size: 1rem;
-    width: 70vw;
+    width: 60vw;
+    margin: 1rem;
+    height: fit-content;
+    font-size: 1rem;
+  }
+  .dashboard{
+    flex-direction: column;
+    align-items: center;
+    width: 85vw;
   }
   h1{
       font-size: 1rem;
