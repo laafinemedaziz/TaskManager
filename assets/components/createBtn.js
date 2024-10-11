@@ -9,4 +9,5 @@ export function createBtn(btnText,labelText,labId,btnId,className,container,onCl
     btn.onclick = onClickFunction
     container.append(btnLab)
     container.append(btn)
+    return(btn)
 }

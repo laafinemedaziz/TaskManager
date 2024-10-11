@@ -20,9 +20,9 @@ export function loginPage(){
     const email = formElements("Email","input","email","email","Enter you Email",logInForm)
     const password = formElements("Password","input","password","password","Enter you password",logInForm)
     //submit button
-    let subBtn = document.createElement("button")
-    subBtn.type = "submit"
-    subBtn.innerText = "Submit"
+    let subBtn = createBtn("Submit","","","","",logInForm,()=>{
+        console.log("Log in clicked")
+    })
     //adding the notification view
     let notification = document.createElement("div")
     logInForm.append(notification)
@@ -34,7 +34,6 @@ export function loginPage(){
         },subBtn,notification)
     }
     //appending everything to the DOM
-    logInForm.append(subBtn)
     logInContainer.append(logInForm)
     root.innerHTML = ""
     root.append(logInContainer)

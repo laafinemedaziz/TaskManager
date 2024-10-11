@@ -1,9 +1,11 @@
-import { firstPage } from "./firstPage"
 import { createBtn } from "./createBtn"
 import { auth } from "./firebase"
-import { task } from "./task"
+import { taskCard } from "./taskCard"
 import { field } from "./field"
-export function mainPage(){
+import { addTaskform } from "./addTask"
+import { tasksCol } from "./firebase"
+import { getDocs, query, where } from "../../node_modules/firebase/firestore"
+export async function mainPage(){
     const root = document.getElementById("root")
     const dashboard = document.createElement("div")
     dashboard.className = "dashboard"
@@ -11,8 +13,9 @@ export function mainPage(){
     const header = document.createElement("div")
     header.className = "header"
     const userInofs = document.createElement("div")
-    userInofs.className = userInofs
-    userInofs.innerText = `Welcome ${auth.currentUser.displayName}`
+    userInofs.className = "userInofs"
+    userInofs.innerText = `Welcome ${auth.currentUser.displayName}  `
+    createBtn("Add a new task","","","newTask","newTaskBtn",userInofs,addTaskform)
     header.append(userInofs)
     console.log(auth.currentUser.uid)
     createBtn("Sign out","","","signOut","signOut",header,()=>{
@@ -22,26 +25,25 @@ export function mainPage(){
     //A task can be pending, done or archived 
     const pending = field("pending")
     dashboard.append(pending)
-
     const done = field("done")
     dashboard.append(done)
-
     const archived = field("archived")
     dashboard.append(archived)
-
-    pending.append(task("Task title","mm/dd/yyyy","Status","Task description Task description Task description","mm/dd/yyyy"))
-    pending.append(task("Task title","mm/dd/yyyy","Status","Task description Task description Task description","mm/dd/yyyy"))
-    pending.append(task("Task title","mm/dd/yyyy","Status","Task description Task description Task description","mm/dd/yyyy"))
-    done.append(task("Task title","mm/dd/yyyy","Status","Task description Task description Task description","mm/dd/yyyy"))
-    done.append(task("Task title","mm/dd/yyyy","Status","Task description Task description Task description","mm/dd/yyyy"))
-    archived.append(task("Task title","mm/dd/yyyy","Status","Task description Task description Task description","mm/dd/yyyy"))
-    archived.append(task("Task title","mm/dd/yyyy","Status","Task description Task description Task description","mm/dd/yyyy"))
-
+    await getTasks(pending,done,archived)
     root.innerHTML = ""
     root.append(header)
-    
     root.append(dashboard)
 }
-async function getTasks(){
-
+async function getTasks(pending,done,archived){
+    const q = query(tasksCol,where("UID","==",auth.currentUser.uid))
+    const docs = await getDocs(q)
+    docs.forEach((doc)=>{
+        if(doc.data().status === "pending"){
+            pending.append(taskCard(doc))
+        }else if (doc.data().status ==="done"){
+            done.append(taskCard(doc))
+        }else{
+            archived.append(taskCard(doc))
+        }
+    })
 }

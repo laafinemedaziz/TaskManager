@@ -55,6 +55,7 @@ button:active{
 .signOut:hover{
   background-color: red;
 }
+
 .mainContainer{
   display: flex;
   flex-direction: column;
@@ -73,6 +74,8 @@ button:active{
   justify-content: center;
   background-color:#CADCFC ;
   width: fit-content;
+  max-width: 90vw;
+  min-width: 50vw;
   margin: 1rem;
   padding: 1rem;
   color: #00246B;
@@ -84,7 +87,40 @@ button:active{
   margin: 0.5rem;
   width: 30rem;
 }
-input{
+input,textArea{
+  border: none;
+  border-bottom: #00246B solid 2px;
+  background-color: #CADCFC;
+  margin-top: 0.5rem;
+  font-family: "Playwrite DE Grund", cursive;
+  font-size: 1rem;
+}
+.cancel{
+  margin-left: 1rem;
+}
+.editbtn{
+  width: fit-content;
+  background-color: transparent;
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+  margin: 0.5rem;
+}
+.editbtn:hover{
+  background-color: #FFFFFF;
+  color: #00246B;
+}
+.textArea{
+  margin-bottom: 1rem;
+}
+.editStatus{
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  width: 30rem;
+}
+select{
+  width: 10rem;
+  margin: 1rem;
   border: none;
   border-bottom: #00246B solid 2px;
   background-color: #CADCFC;
@@ -105,13 +141,13 @@ input{
   flex-direction: column;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.315);
   margin: 1rem;
+  border-radius: 10px;
   padding: 0.5rem;
   background-color: #606b7c85;
+  width: 20vw;
 }
 .task:hover{
-  background-color: #00246B;
-  color: #CADCFC;
-  border-radius: 10px;
+  background-color: #7aa0eb;
 }
 .taskHeader{
   display: flex;
@@ -137,6 +173,9 @@ input{
   padding:1rem ;
   border-radius: 10px;
 }
+.editTaskInput{
+  width: 18rem;
+}
 .header{
   background-color: #CADCFC;
   margin: 1rem;
@@ -153,12 +192,28 @@ input{
   margin: 1rem;
   padding: 1rem;
   border-radius: 10px;
-  font-family: 'Courier New', Courier, monospace;
 }
+
 .pending{
   background-color: #c349319c;
   padding: 1rem;
+  font-size:medium;
   color: #FFFFFF;
+}
+.userInfo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.newTaskBtn{
+  color: #16721b9c;
+  border-color: #16721b9c;
+  font-size:medium;
+  font-weight: 1000;
+}
+.newTaskBtn:hover{
+  color: #CADCFC;
+  background-color: #16721b9c;
 }
 .done{
   background-color: #16721b9c;
@@ -187,6 +242,9 @@ input{
   }
   .inputField{
       width: fit-content;
+  }
+  .editTaskInput{
+    width: 12rem;
   }
   .task{
     box-shadow: none;

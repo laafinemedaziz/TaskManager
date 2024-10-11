@@ -16,7 +16,7 @@ import { getAuth } from '../../node_modules/firebase/auth';
     export const db = getFirestore(app);
     //Firestore Collections
     export const usersCol = collection(db,"users");
-
+    export const tasksCol = collection(db,"tasks")
 
 
 

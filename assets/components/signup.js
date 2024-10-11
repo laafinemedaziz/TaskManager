@@ -46,10 +46,9 @@ export function signupPage(){
     }
     elements.push(cPassword)
     //submit button
-    let subBtn = document.createElement("button")
-    subBtn.type = "submit"
-    subBtn.innerText = "Submit"
-    signUpForm.append(subBtn)
+    let subBtn = createBtn("Submit","","","","",signUpForm,()=>{
+        console.log("Log in clicked")
+    })
     //adding the notification view
     let notification = document.createElement("div")
     signUpForm.append(notification)
