@@ -8,6 +8,8 @@ import { getDocs, query, where } from "../../node_modules/firebase/firestore"
 import { createImg } from "./createImg"
 export async function mainPage(){
     const root = document.getElementById("root")
+    const loader = document.getElementById("loader")
+    loader.classList.remove("loader")
     const dashboard = document.createElement("div")
     dashboard.className = "dashboard"
     //header to display user infos, Tasks count and signout button
@@ -30,7 +32,9 @@ export async function mainPage(){
     dashboard.append(done)
     const archived = field("archived")
     dashboard.append(archived)
+    loader.classList.add("loader")
     await getTasks(pending,done,archived)
+    loader.classList.remove("loader")
     root.innerHTML = ""
     root.append(header)
     root.append(dashboard)

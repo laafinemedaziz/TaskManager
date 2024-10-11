@@ -230,7 +230,12 @@ select{
   padding: 1rem;
   color: #FFFFFF;
 }
-
+#loader{
+  width: 100px;
+  height: 100px;
+  position:absolute;
+  top: 7rem;
+}
 .archived{
   background-color: #3469ba50;
   padding: 1rem;

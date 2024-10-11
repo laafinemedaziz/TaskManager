@@ -11,6 +11,8 @@ export function taskCard(task){
     //task div
     const taskDiv = document.createElement("div")
     taskDiv.className = "task"
+    let loader = document.getElementById("loader")
+    loader.classList.remove("loader")
     //edit task buttons
     let taskEditDiv = document.createElement("div")
     let editbtn = createBtn(createImg("/images/editing.png","icon"),"","","","editbtn",taskEditDiv,()=>{editTask(taskDiv,task)},"Edit task")
