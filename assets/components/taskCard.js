@@ -13,14 +13,14 @@ export function taskCard(task){
     taskDiv.className = "task"
     //edit task buttons
     let taskEditDiv = document.createElement("div")
-    let editbtn = createBtn(createImg("./assets/images/editing.png","icon"),"","","","editbtn",taskEditDiv,()=>{editTask(taskDiv,task)},"Edit task")
-    let deletebtn = createBtn(createImg("./assets/images/delete.png","icon"),"","","","editbtn",taskEditDiv,()=>{
+    let editbtn = createBtn(createImg("./public/images/editing.png","icon"),"","","","editbtn",taskEditDiv,()=>{editTask(taskDiv,task)},"Edit task")
+    let deletebtn = createBtn(createImg("./public/images/delete.png","icon"),"","","","editbtn",taskEditDiv,()=>{
         deletetask(task)
     },"Delete task")
-    let donebtn = createBtn(createImg("./assets/images/done.png","icon"),"","","","editbtn",taskEditDiv,()=>{
+    let donebtn = createBtn(createImg("./public/images/done.png","icon"),"","","","editbtn",taskEditDiv,()=>{
         makeTaskDone(task)
     },"Mark as done")
-    let archivedbtn = createBtn(createImg("./assets/images/archive.png","icon"),"","","","editbtn",taskEditDiv,()=>{
+    let archivedbtn = createBtn(createImg("./public/images/archive.png","icon"),"","","","editbtn",taskEditDiv,()=>{
         makeTaskArchived(task)
     },"Add to archive")
     taskDiv.append(taskEditDiv)
