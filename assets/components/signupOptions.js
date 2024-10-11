@@ -7,7 +7,7 @@ export function signupOptions(){
     let options = document.createElement("div")
     options.className = "mainContainer"
     createBtn("Back","","","","back",options,firstPage,"Back to previous page")
-    createBtn("Sign Up with ( under developement )","","","signupGoogle","signupGoogle",options,()=>{},"Not available yet")
+    createBtn("Sign Up with Google ( under developement )","","","signupGoogle","signupGoogle",options,()=>{},"Not available yet")
     createBtn("Create an account","","","createAccbtn","createAccbtn",options,signupPage,"Sign up")
     root.innerHTML = ""
     root.append(options)
