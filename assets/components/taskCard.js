@@ -104,6 +104,7 @@ export function editTask(taskDiv,task){
     let cancelbtn = createBtn("Cancel","","","","cancel",editTaskForm,()=>{
         mainPage()
     })
+    cancelbtn.type = "button"
     taskDiv.append(editTaskForm)
 }
 async function submitChanges(editedfields,task){
