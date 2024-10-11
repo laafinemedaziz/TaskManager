@@ -15,6 +15,12 @@ export function taskCard(task){
     let deletebtn = createBtn("Delete","","","","editbtn",taskEditDiv,()=>{
         deletetask(task)
     })
+    let donebtn = createBtn("Done","","","","editbtn",taskEditDiv,()=>{
+        makeTaskDone(task)
+    })
+    let archivedbtn = createBtn("Archive","","","","editbtn",taskEditDiv,()=>{
+        makeTaskArchived(task)
+    })
     taskDiv.append(taskEditDiv)
     //task elements
     let elements = []
@@ -107,6 +113,28 @@ async function submitChanges(editedfields,task){
 async function deletetask(task){
     try {
         await deleteDoc(doc(db,"tasks",task.id))
+        mainPage()
+    } catch (error) {
+        console.error(error)
+    }
+}
+async function makeTaskDone(task){
+    try {
+        let taskRef = doc(db,"tasks",task.id)
+        await updateDoc(taskRef,{
+            status : "done",
+        })
+        mainPage()
+    } catch (error) {
+        console.error(error)
+    }
+}
+async function makeTaskArchived(task){
+    try {
+        let taskRef = doc(db,"tasks",task.id)
+        await updateDoc(taskRef,{
+            status : "archived",
+        })
         mainPage()
     } catch (error) {
         console.error(error)
