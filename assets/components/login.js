@@ -10,7 +10,7 @@ export function loginPage(){
     const root = document.getElementById("root")
     const logInContainer = document.createElement("div")
     logInContainer.className = "mainContainer"
-    createBtn("Back","","","","back",logInContainer,firstPage)
+    createBtn("Back","","","","back",logInContainer,firstPage,"Back to previous page")
     let logInForm = document.createElement("form")
     logInForm.name = "logInForm"
     let legend = document.createElement("legend")
@@ -22,7 +22,7 @@ export function loginPage(){
     //submit button
     let subBtn = createBtn("Submit","","","","",logInForm,()=>{
         console.log("Log in clicked")
-    })
+    },"Submit")
     //adding the notification view
     let notification = document.createElement("div")
     logInForm.append(notification)

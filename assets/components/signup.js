@@ -12,7 +12,7 @@ export function signupPage(){
     let root = document.getElementById("root")
     let signUpContainer = document.createElement("div")
     signUpContainer.className = "mainContainer"
-    createBtn("Back","","","","back",signUpContainer,signupOptions)
+    createBtn("Back","","","","back",signUpContainer,signupOptions,"Back to previous page")
     let signUpForm = document.createElement("form")
     signUpForm.name = "signUpForm"
     let legend = document.createElement("legend")
@@ -48,7 +48,7 @@ export function signupPage(){
     //submit button
     let subBtn = createBtn("Submit","","","","",signUpForm,()=>{
         console.log("Log in clicked")
-    })
+    },"Submit")
     //adding the notification view
     let notification = document.createElement("div")
     signUpForm.append(notification)

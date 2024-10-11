@@ -9,9 +9,7 @@ window.onload = function (){
             firstPage()
         }
         else{
-            setTimeout(() => {
-                mainPage()
-            }, 1000);
+             mainPage()
         }
     })
 }

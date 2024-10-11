@@ -5,13 +5,13 @@ html,body{
   flex-direction: column;
   align-items: center;
   font-family: "Playwrite DE Grund", cursive;
-  background-color: #00246B;
+  background-color: #181818;
 }
 .invalid{
-  border-color: red;
+  border-color: #C62E2E;
 }
 .error{
-  color: red;
+  color: #C62E2E;
   font-size: small;
   font-family: 'Courier New', Courier, monospace;
 }
@@ -22,7 +22,8 @@ html,body{
   padding: 0.5rem;
   width: 100vw;
   align-items: center;
-  background-color: #CADCFC;
+  background-color: #eeeeee36;
+  color: #EEEEEE;
 }
 .logo {
   margin-left: 1rem;
@@ -34,26 +35,27 @@ html,body{
 button{
   padding: 0.25rem;
   border: none;
-  border-bottom: #00246B solid 2px;
-  background-color: #CADCFC;
-  color: #00246B;
+  border-bottom: #DC5F00 solid 2px;
+  background-color: transparent;
+  color: #DC5F00;
   font-family: "Playwrite DE Grund", cursive;
   
 }
 button:hover{
-  background-color: #00246B;
+  background-color: #DC5F00;
   border-radius: 5px;
-  color: #CADCFC;
+  color: #EEEEEE;
 }
 button:active{
   transform: scale(0.9);
 }
 .signOut{
-  color: red;
-  border-color: red;
+  color: #C62E2E;
+  border-color: #C62E2E;
 }
 .signOut:hover{
-  background-color: red;
+  background-color: #C62E2E;
+  color: #EEEEEE;
 }
 
 .mainContainer{
@@ -61,18 +63,18 @@ button:active{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color:#CADCFC ;
+  background-color:#eeeeee36 ;
   width: 500px;
   margin-top: 5rem;
   padding: 3rem;
-  color: #00246B;
+  color: #EEEEEE;
   border-radius: 10px;
   
 }
 .dashboard{
   display: flex;
   justify-content: center;
-  background-color:#CADCFC ;
+  background-color:#eeeeee36 ;
   width: fit-content;
   max-width: 90vw;
   min-width: 50vw;
@@ -89,25 +91,23 @@ button:active{
 }
 input,textArea{
   border: none;
-  border-bottom: #00246B solid 2px;
-  background-color: #CADCFC;
+  border-bottom: #EEEEEE solid 2px;
+  background-color: #686d7660;
   margin-top: 0.5rem;
   font-family: "Playwrite DE Grund", cursive;
   font-size: 1rem;
+  color: #EEEEEE;
 }
 .cancel{
   margin-left: 1rem;
 }
 .editbtn{
   width: fit-content;
-  background-color: transparent;
-  border-color: #FFFFFF;
-  color: #FFFFFF;
+  border-color: #000000;
   margin: 0.5rem;
 }
 .editbtn:hover{
-  background-color: #FFFFFF;
-  color: #00246B;
+  background-color: #ffffff60;
 }
 .textArea{
   margin-bottom: 1rem;
@@ -122,8 +122,8 @@ select{
   width: 10rem;
   margin: 1rem;
   border: none;
-  border-bottom: #00246B solid 2px;
-  background-color: #CADCFC;
+  border-bottom: #EEEEEE solid 2px;
+  background-color: #ffffff60;
   margin-top: 0.5rem;
   font-family: "Playwrite DE Grund", cursive;
   font-size: 1rem;
@@ -143,24 +143,24 @@ select{
   margin: 1rem;
   border-radius: 10px;
   padding: 0.5rem;
-  background-color: #606b7c85;
+  background-color: #eeeeee36;
   width: 20vw;
 }
 .task:hover{
-  background-color: #7aa0eb;
+  background-color: #373A40;
 }
 .taskHeader{
   display: flex;
   justify-content: space-between;
 }
 .deadline{
-  color: red;
+  color: #000000;
   text-decoration:underline ;
 }
 .loader {
   margin-top: 1rem;
-  border: 16px solid #CADCFC; 
-  border-top: 16px solid #00246B; 
+  border: 16px solid #EEEEEE; 
+  border-top: 16px solid #DC5F00; 
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -177,14 +177,14 @@ select{
   width: 18rem;
 }
 .header{
-  background-color: #CADCFC;
+  background-color: #eeeeee36;
   margin: 1rem;
-  padding: 0.5rem;
+  padding: 1rem;
   border-radius: 10px;
   display: flex;
-
   align-items: center;
   justify-content: space-between;
+  color: #EEEEEE;
 
 }
 .field{
@@ -195,7 +195,7 @@ select{
 }
 
 .pending{
-  background-color: #c349319c;
+  background-color: #c3493150;
   padding: 1rem;
   font-size:medium;
   color: #FFFFFF;
@@ -206,22 +206,33 @@ select{
   justify-content: center;
 }
 .newTaskBtn{
-  color: #16721b9c;
-  border-color: #16721b9c;
+  border: none;
   font-size:medium;
   font-weight: 1000;
 }
 .newTaskBtn:hover{
-  color: #CADCFC;
-  background-color: #16721b9c;
+  transform: scale(0.9);
+  background-color: transparent;
+
+}
+.status{
+  font-family: 'Courier New', Courier, monospace;
+  border-radius: 10px;
+  background-color: #373a406b;
+  padding: 0.5rem;
+  height: fit-content;
+}
+.logoText{
+  margin-left: 3rem;
 }
 .done{
-  background-color: #16721b9c;
+  background-color: #16721b50;
   padding: 1rem;
   color: #FFFFFF;
 }
+
 .archived{
-  background-color: #3469ba9c;
+  background-color: #3469ba50;
   padding: 1rem;
   color: #FFFFFF;
 }
@@ -249,7 +260,6 @@ select{
   .task{
     box-shadow: none;
     border-radius: 10px;
-    color: #00246B;
     font-size: 1rem;
     width: 60vw;
     margin: 1rem;

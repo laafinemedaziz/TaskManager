@@ -5,6 +5,7 @@ import { field } from "./field"
 import { addTaskform } from "./addTask"
 import { tasksCol } from "./firebase"
 import { getDocs, query, where } from "../../node_modules/firebase/firestore"
+import { createImg } from "./createImg"
 export async function mainPage(){
     const root = document.getElementById("root")
     const dashboard = document.createElement("div")
@@ -15,12 +16,12 @@ export async function mainPage(){
     const userInofs = document.createElement("div")
     userInofs.className = "userInofs"
     userInofs.innerText = `Welcome ${auth.currentUser.displayName}  `
-    createBtn("Add a new task","","","newTask","newTaskBtn",userInofs,addTaskform)
+    createBtn(createImg("./assets/images/add.png","icon"),"","","newTask","newTaskBtn",userInofs,addTaskform,"Add new task")
     header.append(userInofs)
     console.log(auth.currentUser.uid)
     createBtn("Sign out","","","signOut","signOut",header,()=>{
         auth.signOut()
-    })
+    },"Sign out")
     //Task fields depending on status
     //A task can be pending, done or archived 
     const pending = field("pending")

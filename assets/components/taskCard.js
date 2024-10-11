@@ -4,23 +4,25 @@ import { db,tasksCol } from "./firebase"
 import { updateDoc,deleteDoc } from "../../node_modules/firebase/firestore"
 import { doc } from "../../node_modules/firebase/firestore"
 import { mainPage } from "./mainPage"
+import { createImg } from "./createImg"
 export function taskCard(task){
     //develop the task function
     //task object
     //task div
     const taskDiv = document.createElement("div")
     taskDiv.className = "task"
+    //edit task buttons
     let taskEditDiv = document.createElement("div")
-    let editbtn = createBtn("Edit","","","","editbtn",taskEditDiv,()=>{editTask(taskDiv,task)})
-    let deletebtn = createBtn("Delete","","","","editbtn",taskEditDiv,()=>{
+    let editbtn = createBtn(createImg("./assets/images/editing.png","icon"),"","","","editbtn",taskEditDiv,()=>{editTask(taskDiv,task)},"Edit task")
+    let deletebtn = createBtn(createImg("./assets/images/delete.png","icon"),"","","","editbtn",taskEditDiv,()=>{
         deletetask(task)
-    })
-    let donebtn = createBtn("Done","","","","editbtn",taskEditDiv,()=>{
+    },"Delete task")
+    let donebtn = createBtn(createImg("./assets/images/done.png","icon"),"","","","editbtn",taskEditDiv,()=>{
         makeTaskDone(task)
-    })
-    let archivedbtn = createBtn("Archive","","","","editbtn",taskEditDiv,()=>{
+    },"Mark as done")
+    let archivedbtn = createBtn(createImg("./assets/images/archive.png","icon"),"","","","editbtn",taskEditDiv,()=>{
         makeTaskArchived(task)
-    })
+    },"Add to archive")
     taskDiv.append(taskEditDiv)
     //task elements
     let elements = []
@@ -32,6 +34,7 @@ export function taskCard(task){
     taskHeader.append(title)
     let status = document.createElement("p")
     status.innerText = task.data().status
+    status.className = "status"
     taskHeader.append(status)
     elements.push(taskHeader)
     let created = document.createElement("p")
