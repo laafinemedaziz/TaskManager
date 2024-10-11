@@ -16,7 +16,7 @@ export async function mainPage(){
     const userInofs = document.createElement("div")
     userInofs.className = "userInofs"
     userInofs.innerText = `Welcome ${auth.currentUser.displayName}  `
-    createBtn(createImg("./public/images/add.png","icon"),"","","newTask","newTaskBtn",userInofs,addTaskform,"Add new task")
+    createBtn(createImg("/images/add.png","icon"),"","","newTask","newTaskBtn",userInofs,addTaskform,"Add new task")
     header.append(userInofs)
     console.log(auth.currentUser.uid)
     createBtn("Sign out","","","signOut","signOut",header,()=>{
