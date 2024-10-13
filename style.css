@@ -52,6 +52,8 @@ button:active{
 .signOut{
   color: #C62E2E;
   border-color: #C62E2E;
+  font-size: large;
+  font-weight: bold;
 }
 .signOut:hover{
   background-color: #C62E2E;
@@ -200,15 +202,20 @@ select{
   font-size:medium;
   color: #FFFFFF;
 }
-.userInfo{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 .newTaskBtn{
   border: none;
   font-size:medium;
   font-weight: 1000;
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  color: #4BAE4F;
+}
+.addIcon{
+  margin-right: 0.5rem;
 }
 .newTaskBtn:hover{
   transform: scale(0.9);
@@ -254,7 +261,7 @@ select{
     font-size: 0.8rem;
   }
   .signOut{
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   .inputField{
       width: fit-content;
