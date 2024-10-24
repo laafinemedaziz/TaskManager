@@ -6,6 +6,7 @@ import { addTaskform } from "./addTask"
 import { tasksCol } from "./firebase"
 import { getDocs, query, where } from "../../node_modules/firebase/firestore"
 import { createImg } from "./createImg"
+import { archivedTask } from "./archivedTask"
 export async function mainPage(){
     const root = document.getElementById("root")
     const loader = document.getElementById("loader")
@@ -49,7 +50,7 @@ async function getTasks(pending,done,archived){
         }else if (doc.data().status ==="done"){
             done.append(taskCard(doc))
         }else{
-            archived.append(taskCard(doc))
+            archived.append(archivedTask(doc))
         }
     })
 }

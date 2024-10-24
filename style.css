@@ -148,6 +148,9 @@ select{
   background-color: #eeeeee36;
   width: 20vw;
 }
+p{
+  margin:0.2rem;
+}
 .task:hover{
   background-color: #373A40;
 }
@@ -156,8 +159,13 @@ select{
   justify-content: space-between;
 }
 .deadline{
+  margin-top: 0.5rem;
   color: #000000;
   text-decoration:underline ;
+}
+.icon,.addIcon{
+  width: 20px;
+  height: 20px;
 }
 .loader {
   margin-top: 1rem;
@@ -222,12 +230,13 @@ select{
   background-color: transparent;
 
 }
+.taskDes{
+  font-size: 0.8rem;
+}
 .status{
-  font-family: 'Courier New', Courier, monospace;
-  border-radius: 10px;
-  background-color: #373a406b;
-  padding: 0.5rem;
-  height: fit-content;
+  margin-right: 0.2rem;
+  height: 28px;
+  width: 28px;
 }
 .logoText{
   margin-left: 3rem;

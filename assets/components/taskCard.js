@@ -34,16 +34,21 @@ export function taskCard(task){
     title.innerText = `Task : ${task.data().title}`
     title.className = "taskTitle"
     taskHeader.append(title)
-    let status = document.createElement("p")
-    status.innerText = task.data().status
-    status.className = "status"
+    let status = document.createElement("div")
+    if(task.data().status==="pending"){
+        status.append(createImg("/images/pendingIcon.png","status"))
+    }else if (task.data().status==="done"){
+        status.append(createImg("/images/doneIcon.png","status"))
+    }
+    
     taskHeader.append(status)
     elements.push(taskHeader)
     let created = document.createElement("p")
     created.innerText = `Created on : ${task.data().created}`
     elements.push(created)
     let description = document.createElement("p")
-    description.innerText = task.data().description
+    description.innerText = `Description:\n${task.data().description}`
+    description.className = "taskDes"
     elements.push(description)
     let deadline = document.createElement("p")
     deadline.className = "deadline"
@@ -116,7 +121,7 @@ async function submitChanges(editedfields,task){
         console.error(error)
     }
 }
-async function deletetask(task){
+export async function deletetask(task){
     try {
         await deleteDoc(doc(db,"tasks",task.id))
         mainPage()
@@ -126,11 +131,13 @@ async function deletetask(task){
 }
 async function makeTaskDone(task){
     try {
-        let taskRef = doc(db,"tasks",task.id)
-        await updateDoc(taskRef,{
+        if(task.data().status != "done"){
+            let taskRef = doc(db,"tasks",task.id)
+            await updateDoc(taskRef,{
             status : "done",
         })
         mainPage()
+        }
     } catch (error) {
         console.error(error)
     }
