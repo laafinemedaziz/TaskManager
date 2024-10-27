@@ -7,6 +7,7 @@ import { tasksCol } from "./firebase"
 import { getDocs, query, where } from "../../node_modules/firebase/firestore"
 import { createImg } from "./createImg"
 import { archivedTask } from "./archivedTask"
+import { orderBy } from "firebase/firestore/lite"
 export async function mainPage(){
     const root = document.getElementById("root")
     const loader = document.getElementById("loader")
@@ -42,7 +43,7 @@ export async function mainPage(){
     root.append(dashboard)
 }
 async function getTasks(pending,done,archived){
-    const q = query(tasksCol,where("UID","==",auth.currentUser.uid))
+    const q = query(tasksCol,orderBy("deadline","asc"),where("UID","==",auth.currentUser.uid))
     const docs = await getDocs(q)
     docs.forEach((doc)=>{
         if(doc.data().status === "pending"){
